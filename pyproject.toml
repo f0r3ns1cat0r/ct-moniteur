@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ct-moniteur"
+dynamic = ["version"]
+description = "Certificate Transparency Log Monitor Library - Supports both classic and tiled CT logs with async operations"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "BSD-3-Clause"
+authors = [
+    {name = "Michel Le Bihan", email = "michel@lebihan.pl"}
+]
+maintainers = [
+    {name = "Michel Le Bihan", email = "michel@lebihan.pl"}
+]
+keywords = [
+    "certificate-transparency",
+    "ct-logs",
+    "ssl",
+    "tls",
+    "certificates",
+    "security",
+    "monitoring",
+    "async"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.24.0",
+    "cryptography>=41.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "mypy>=1.5.0",
+    "ruff>=0.0.290",
+]
+
+[project.scripts]
+ct-moniteur = "ct_moniteur.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/CERT-Polska/ct-moniteur"
+Documentation = "https://github.com/CERT-Polska/ct-moniteur#readme"
+Repository = "https://github.com/CERT-Polska/ct-moniteur"
+"Bug Tracker" = "https://github.com/CERT-Polska/ct-moniteur/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "ct_moniteur.__version__"}
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
